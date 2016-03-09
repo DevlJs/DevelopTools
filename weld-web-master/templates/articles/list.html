@@ -1,0 +1,39 @@
+{% extends 'templates/partials/base.html' %}
+{% block scheme %}light{% endblock %}
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+  <div class="container column">
+    {# The first thing we do is call blog data from the CMS. #}
+    {% set data = cms.articles %}
+
+    {# Next we sort the data by publish_date. The true bit reverses it so it's newest first. #}
+    {% set data = data|sort('publish_date', true) %}
+
+    {# This is how you set pagination. It's always important to do this after your sort. #}
+    {% set data = paginate(data, 5) %}
+
+    <h1 class="mb4 text-align-center"><a href="{{ url('articles') }}">Sparks by WELD</a></h1>
+
+    {# Search Input #}
+    {% include 'templates/partials/search.html' %}
+
+    {# TODO: Finish converting blog posts and remove slice limit below #}
+    <ul class="m0 p0">
+      {% for object in data %}
+      <li class="list-style-none bg-cover bg-center bg-no-repeat clr-white rounded overflow-hidden mb2 relative depth-1" style="background-image: url( {{ object.cover_image.url}} )">
+        <a class="column p3-percent" href="{{ url(object) }}">
+          {% if object.author %}<img class="avatar mb2" src="{{ object.author.avatar.url }}" alt="Image of {{ object.author.name }}">{% endif %}
+          <h1>{{ object.name }}</h1>
+          <p>{{ object.body|striptags|truncate(300) }}</p>
+        </a>
+        <span class="overlay bg-trans-black depth-0" style="background-color: {{ object.overlay }}; opacity: {{ object.opacity }};"></span>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {# Pagination #}
+    {% include 'templates/partials/paginator.html' %}
+
+  </div>
+{% endblock %}

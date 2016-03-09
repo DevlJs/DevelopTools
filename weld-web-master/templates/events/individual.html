@@ -1,0 +1,85 @@
+{% extends 'templates/partials/base.html' %}
+{% block title %}{{ item.name }}{% endblock %}
+{% block searchable %}true{% endblock %}
+
+{% block content %}
+
+<header class="event-cover column center vh90 text-align-center bg-cover bg-center bg-fixed p3-percent relative depth-1" style="background-image: url({{ item.background.url }});">
+<span class="overlay depth-0" style="background: {{ item.overlay_color }}; opacity: {{ item.opacity }}"></span>
+
+  <div class="column top-center">
+
+    <span class="event-details sans-font uppercase tracked">{{ item.start|date('F jS, Y – g A') }}</span>
+
+    <h1 class="heading-large thin">{{ item.title }}</h1>
+    <span class="event-subhead sans-font uppercase tracked">{{ item.subhead }}</span>
+
+    <form class="ajax-submit input-group row" action="//weld.us4.list-manage.com/subscribe/post-json?u=065b63f81851e09661ae5d9e7&amp;id={{ item.mailchimp_list }}&c=?" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <input class="input input-group-input" type="email" placeholder="count@me.in" name="EMAIL" id="mce-EMAIL" required>
+      <input class="button-black input-group-button" type="submit" value="I'm coming!" name="subscribe" id="mc-embedded-subscribe">
+    </form>
+  </div>
+
+  {% if item.premier_sponsors %}
+  <div class="event-top-sponsors">
+  <h5 class="sans-font uppercase tracked">Premier Sponsors</h5>
+    <div class="row center">
+      {% for row in item.premier_sponsors %}
+      <a class="event-sponsor-link" href="{{ row.link }}" target="_blank">
+        <img class="event-premier-sponsor" src="{{ row.logo.url }}"/>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+</header>
+
+<section class="event-location row center text-align-center" style="background: {{ item.secondary_color }}">
+  <a class="sans-font uppercase tracked" href="{{ item.map_link }}" target="_blank">At {{ item.address }}</a>
+</section>
+
+{% if item.description %}
+<section class="event-description wysiwyg bg-lightest-grey row center text-align-center clr-black">
+  <span class="event-description-wrap serif-font thin m0">{{ item.description|safe }}</span>
+</section>
+{% endif %}
+
+<section class="bg-white row center p3-percent text-align-center clr-black">
+  <h5 class="sans-font uppercase tracked">Sponsored by</h5>
+  <img src="{{ item.sponsors|imageSize(2000, 'auto') }}"/>
+</section>
+
+<div class="modal fullscreen row center depth-10">
+  <div class="modal-message-wrap column center slideUp">
+    <div class="modal-message-headline text-align-center sans-font uppercase tracked">Yeah! Check your email to confirm.</div>
+
+    <span class="addtocalendar atc-style-weld" data-calendars="Google Calendar, iCalendar, Outlook, Outlook Online, Yahoo! Calendar" data-event="Add To Calendar">
+      <var class="atc_event">
+        <var class="atc_date_start">{{ item.start|date('Y-m-d H:i:s') }}</var>
+        <var class="atc_date_end">{{ item.end|date('Y-m-d H:i:s') }}</var>
+        <var class="atc_timezone">America/Mexico_City</var>
+        <var class="atc_title">{{ item.title }}</var>
+        <var class="atc_description">{{ item.description }}</var>
+        <var class="atc_location">{{ item.address }}</var>
+        <var class="atc_organizer">WELD</var>
+        <var class="atc_organizer_email">hello@weld.co</var>
+      </var>
+    </span>
+
+  </div>
+  <span class="modal-background"></span>
+</div>
+
+<div class="column center text-align-center p3-percent clr-black bg-lightest-grey">
+  <h3>Let us know if you’re coming!</h3>
+  <form class="ajax-submit input-group row" action="//weld.us4.list-manage.com/subscribe/post?u=065b63f81851e09661ae5d9e7&amp;id={{ item.mailchimp_list }}" method="post" id="mc-embedded-subscribe-form2" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <input class="input input-group-input" type="email" placeholder="count@me.in" name="EMAIL" id="mce-EMAIL" required>
+    <input class="button input-group-button" type="submit" value="I'm coming!" name="subscribe" id="mc-embedded-subscribe">
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts_extra %}
+  <script src="/static/scripts/events.js"></script>
+{% endblock %}

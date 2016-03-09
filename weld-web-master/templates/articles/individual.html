@@ -1,0 +1,95 @@
+{% extends 'templates/partials/base.html' %}
+
+{% block title %}{{ item.name }}{% endblock %}
+{% block searchable %}true{% endblock %}
+
+{% block content %}
+
+<article class="column">
+  <header class="article-header relative bg-cover bg-no-repeat clr-white column fullscreen center-left p3-percent depth-1" style="background-image: url({{ item.cover_image.url }}); background-position: {{ item.image_alignment }};">
+    <a class="article-list-link absolute" href="{{ url('articles') }}" data-search-index="false">← All Articles</a>
+    <span class="article-date full-w mb2 clr-black" data-search-index="false">{{ item.publish_date|date('F d, Y') }} / <a href="#disqus_thread" class="clr-white">Comments</a></span>
+    <h1 class="article-headline" data-search-index="false">{{ item.name }}</h1>
+
+    {% if item.author %}
+    <a class="article-details row uppercase tracked" href=" {{ item.author.link }}" target="_blank">
+      <img class="avatar" src="{{ item.author.avatar.url }}"/>
+      <span class="row center-left">by {{ item.author.name }} {{ item.author.last_name }}</span>
+    </a>
+    {% endif %}
+
+    {% set next = nextItem(item, 'publish_date') %}
+    {% set prev = prevItem(item, 'publish_date') %}
+
+    {% if prev %}
+      <a href="{{ url(prev) }}" class="prev-item depth-10" data-search-index="false">
+        <div class="item-head">Older</div>
+        <div class="item-name">{{ prev.name }}</div>
+      </a>
+    {% endif %}
+
+    {% if next %}
+      <a href="{{ url(next) }}" class="next-item depth-10" data-search-index="false">
+        <div class="item-head">Newer</div>
+        <div class="item-name">{{ next.name }}</div>
+      </a>
+    {% endif %}
+    <span class="bg-gradient overlay depth-0" style="background: {{ item.overlay }}; opacity: {{ item.opacity }};"></span>
+  </header>
+
+  <div class="bg-white column full-w" data-js="video-container">
+
+    {# Sponsors #}
+    {% if item.sponsors %}
+    <div class="blog-sponsor row center p2">
+    <span class="blog-sponsor-text sans-font uppercase tracked clr-grey">Sponsored By</span>
+      <div class="row center">
+        {% for row in item.sponsors %}
+        <a class="blog-sponsor-link" href="{{ row.link }}" target="_blank">
+          <img class="blog-sponsor-image" src="{{ row.logo.url }}"/>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="article-content serif-font">
+
+      {# Body #}
+      {{ item.body|safe }}
+
+      {# Gallery #}
+      {% if item.gallery %}
+      <div class="gallery-container row relative">
+        <div class="article-gallery-overlay"></div>
+        {% for image in item.gallery %}
+        <a href="{{ image|imageSize(1200) }}" class="gallery-thumbnail swipebox">
+          <img class="gallery-image" src="{{ image|imageSize(800) }}">
+        </a>
+        {% endfor%}
+      </div>
+      {% endif %}
+
+      {% if item.body_after_gallery %}
+        {{ item.body_after_gallery|safe }}
+      {% endif %}
+
+    </div> <!-- article-content -->
+
+    {# Sharing Buttons #}
+    {% include 'templates/partials/sharing-buttons.html' %}
+
+    {# Disqus #}
+    <div id="disqus_thread" class="disqus-container"></div>
+    <script>(function() { var d = document, s = d.createElement('script'); s.src ='//weldco.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })(); </script>
+
+    {# Footer #}
+    <div class="article-footer row bg-lightest-grey p3-percent" data-search-index="false">
+      {% include 'templates/partials/notified.html' %}
+    </div>
+  </div>
+</article>
+
+{% block scripts_extra %}
+  <script id="dsq-count-scr" src="//weldco.disqus.com/count.js" async></script>
+{% endblock %}

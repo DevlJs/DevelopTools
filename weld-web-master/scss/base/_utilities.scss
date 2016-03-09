@@ -1,0 +1,125 @@
+.desktop-only {
+  @include small {
+    display: none !important;
+  }
+}
+.mobile-only {
+  @include large {
+    display: none !important;
+  }
+}
+
+//====================================================
+//  Display
+//====================================================
+
+.hidden,
+[hidden]      { display: none; }
+
+.block        { display: block; }
+.flex         { display: flex; }
+.inline       { display: inline; }
+.inline-block { display: inline-block; }
+
+.overflow-hidden { overflow: hidden; }
+.overflow-scroll { overflow: scroll; }
+.overflow-auto   { overflow: auto; }
+.no-scroll { overflow: hidden !important; }
+
+
+.opacity-0 { opacity: 0; }
+.faded { opacity: 0.5; }
+.opacity-1 { opacity: 1; }
+.disabled { opacity: 0.5; pointer-events: none; }
+.overlay { position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
+.rounded           { border-radius: 3px; }
+.circle           { border-radius: 100%; }
+
+// For wysiwyg generated content with p tags all over the place
+.p-inline p { display: inline; }
+
+.bottom { position: absolute; bottom: 0; left: 0; right: 0; margin: auto; }
+.bottom-25 { @extend .bottom; bottom: 25px; }
+.bottom-50 { @extend .bottom; bottom: 50px; }
+
+//====================================================
+//  Background/Image Size & Position
+//====================================================
+
+.bg-no-repeat { background-repeat: no-repeat; }
+.bg-cover { background-size: cover; }
+.bg-contain { background-size: contain; }
+.bg-center { background-position: center; }
+.bg-top { background-position: top; }
+.bg-right { background-position: right; }
+.bg-bottom { background-position: bottom; }
+.bg-left { background-position: left; }
+.bg-fixed { background-attachment: fixed; }
+.bg-local { background-attachment: local; }
+
+.img-cover { object-fit: cover; }
+.img-contain { object-fit: contain; }
+.img-fill { object-fit: fill; }
+.img-scale-down { object-fit: scale-down; }
+
+/*====================================================
+    Colors
+====================================================*/
+.clr-black { color: $black; }
+.clr-grey { color: $grey; }
+.clr-darkgrey { color: $dark-grey; }
+.clr-accent { color: $primary-color }
+.clr-white { color: $white; }
+.bg-black { background-color: $black; color: $white; }
+.bg-trans-black { background-color: fade-out($black, 0.25); }
+.bg-accent { background-color: $primary-color; color: $white; }
+.bg-white { background-color: $white; color: $black; }
+.bg-lightest-grey { background-color: $lightest-grey; color: $black; }
+.bg-gradient { background: $bg-gradient; }
+// Depth Chart
+
+.depth-0 { z-index: -1; }
+.depth-1 { z-index: 100; }
+.depth-2 { z-index: 200; }
+.depth-3 { z-index: 300; }
+.depth-4 { z-index: 400; }
+.depth-5 { z-index: 500; }
+.depth-6 { z-index: 600; }
+.depth-7 { z-index: 700; }
+.depth-8 { z-index: 800; }
+.depth-9 { z-index: 900; }
+.depth-10 { z-index: 1000; }
+
+
+//====================================================
+//  Text wrap
+//====================================================
+
+.pre       { white-space: pre; }
+.nowrap    { white-space: nowrap; }
+
+//====================================================
+//  Scrolling
+//====================================================
+
+.scroll-horizontal {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.scroll-vertical {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+//====================================================
+//  Textareas
+//====================================================
+
+.no-resize { resize: none; }

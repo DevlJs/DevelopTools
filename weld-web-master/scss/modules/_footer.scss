@@ -1,0 +1,20 @@
+.footer {
+  background: lighten($black, 5);
+  min-height: 10vh;
+}
+
+.footer-wrap {
+  max-width: 1200px;
+}
+
+.footer-item {
+  color: $grey;
+  font-size: 0.75rem;
+  text-align: center;
+  line-height: 4;
+  white-space: nowrap;
+}
+
+.small-logo {
+  line-height: 0;
+}

@@ -1,0 +1,20 @@
+.news {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  padding: 2rem;
+  background: rgba(255,255,255,0.1);
+
+  font-family: $sans-font;
+  font-size: 0.875rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+  @include small {
+    font-size: 0.75rem;
+  }
+}

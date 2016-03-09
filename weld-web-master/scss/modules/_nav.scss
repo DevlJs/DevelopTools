@@ -1,0 +1,49 @@
+/*====================================================
+    Basic Nav Elements
+====================================================*/
+
+$nav-button-size: 2.5rem;
+
+.page-close,
+.back-home {
+  position: fixed;
+  top: 1rem;
+
+  color: inherit;
+  font: 1.25rem $sans-font;
+  background: transparent;
+  height: $nav-button-size;
+  width: $nav-button-size;
+  border-radius: 100%;
+  z-index: 1000;
+}
+
+
+.page-close {
+  right: 1rem;
+  @include small {
+    background: fade-out($primary-color, 0.25);
+    color: white !important;
+  }
+  &:hover,
+  &:active { color: $primary-color; }
+}
+
+.back-home {
+  left: 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.2;
+  transition: opacity 300ms;
+  &:hover { opacity: 1; }
+}
+
+.home-logo-icon {
+  background: url(../images/ui/weld-logo-medium.svg) no-repeat center;
+  height: 100%;
+  width: 100%;
+  transition: filter 300ms;
+}
+
+.light .home-logo-icon { filter: brightness(0.5); }

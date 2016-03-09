@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata|Ubuntu+Mono);
+
+body {
+    color: #FFF;
+    background-color: #222;
+    font-family: 'Inconsolata', 'Courier New, Courier, monospace';
+    font-size: 14px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#console {
+    margin: 0px;
+}
+
+.output-line {
+    margin: 3px 3px;
+}
+.output-span {
+    white-space: pre-wrap;
+}
+
+.cursor {
+    animation: blink-empty 1s infinite;
+    border-left: transparent solid 1px;
+    margin:5px
+}
+
+@keyframes blink-empty {
+    50% { border-left: 1px solid #FFF; }
+}

@@ -1,0 +1,58 @@
+.event-cover {
+  font-size: 0.75rem;
+  min-height: 800px;
+  background-attachment: fixed !important;
+  @include large {
+    font-size: 1rem;
+  }
+}
+
+.event-details {
+  padding: 2rem 0;
+  border-bottom: 1px dashed;
+  margin-bottom: 5vh;
+  @include large {
+    padding: 2rem 2rem;
+  }
+}
+
+.heading-large {
+  font-size: 2rem;
+  @include large {
+    font-size: 5vmax;
+  }
+}
+
+.event-subhead {
+  margin-bottom: 10vh;
+}
+
+.event-description {
+  font-size: 1.75rem;
+  line-height: 1.4;
+  min-height: 215px;
+  padding: 5% 1rem;
+  @include small {
+    font-size: 1.25rem;
+  }
+}
+
+.event-description-wrap {
+  max-width: 75ch;
+}
+
+.event-sponsor-link {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.event-premier-sponsor {
+  width: auto !important;
+  @include small {
+    max-width: 90%;
+  }
+}
+
+.event-location {
+  height: 75px;
+}

@@ -1,0 +1,88 @@
+/*====================================================
+    Cover Image
+====================================================*/
+
+$cover-padding: 3rem;
+
+.intro-cover {
+  height: 95vh;
+  padding: $cover-padding;
+  background: $bg-gradient;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  @include small {
+    min-height: 300px;
+    padding: 2rem;
+    text-align: left;
+    line-height: 1.4;
+  }
+}
+
+.action-links {
+  font: $base-font;
+  font-size: 0.75rem;
+  position: absolute;
+  top: $cover-padding;
+  right: $cover-padding;
+  a:not(:last-child) {
+    margin-right: 1rem;
+  }
+  @include small {
+    top: 2rem;
+    right: 2rem;
+  }
+}
+
+.apply {
+  margin-left: 1rem;
+  width: auto;
+  padding: 0.75rem 1rem;
+  @include small {
+    margin-left: 1rem;
+  }
+}
+
+// Fade in any .js-section- element
+
+.intro-wrap {
+  max-width: 1400px;
+  animation: fade-in 3s;
+  @include small {
+    width: 100%;
+  }
+}
+
+.logo {
+  margin-bottom: 2rem;
+  width: 202px;
+  @include small {
+    width: 101px;
+  }
+}
+
+.fade-down {
+  animation: fade-down 10s;
+  opacity: 0.25;
+}
+
+.intro {
+  animation: fade-in 1s;
+  display: block;
+  color: white;
+  font: $headline-font;
+  @include small {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.main-cta {
+  margin-top: 4rem;
+  @include small {
+    margin-top: 1rem;
+  }
+}
+
+.splash-message {
+  max-width: 500px;
+}
